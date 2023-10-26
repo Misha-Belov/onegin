@@ -1,0 +1,11 @@
+
+*.o
+*.exe
+work_with_file/file1.cpp
+work_with_file/file2.cpp
+work_with_file/file3.cpp
+work_with_file/a.txt
+work_with_file/file.txt
+sort/a.txt
+sort/file.txt
+sort/str_sort.cpp
