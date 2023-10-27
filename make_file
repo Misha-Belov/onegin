@@ -13,11 +13,14 @@ FLAGS=-Wshadow -Winit-self -Wredundant-decls -Wcast-align       \
 
 all: onegin
 
-onegin: onegin.o file.o
-	g++ onegin.o file.o -o onegin
+onegin: onegin.o file.o sort.o
+	g++ onegin.o file.o sort.o -o onegin
 
 onegin.: onegin.cpp onegin.h
 	g++ $(FLAGS) -c onegin.cpp -o onegin.o
 
 file.o: file.cpp onegin.h
 	g++ $(FLAGS) -c file.cpp -o file.o
+
+sort.o: sort.cpp onegin.h
+	g++ $(FLAGS) -c sort.cpp -o sort.o

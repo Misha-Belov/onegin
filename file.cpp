@@ -1,18 +1,19 @@
 #include "onegin.h"
 
-// char* read_file_name(const char* command[], int len)
-// {
-//     const char file[] = "--file";
-//
-//     for(int i = 0; i < len; i++)
-//     {
-//         if(!strcmp(command[i], file))
-//         {
-//             return (command[i + 1]);
-//         }
-//     }
-//     return "no file";
-// }
+bool read_file_name(char* command[], int len, char** file_name)
+{
+    char file[] = "--file";
+
+    for(int i = 0; i < len; i++)
+    {
+        if(!strcmp(command[i], file))
+        {
+            *file_name = command[i + 1];
+            return true;
+        }
+    }
+    return false;
+}
 
 void read_from_file(char* file_name, int* num_str, char* arr_pointer[])
 {
@@ -41,27 +42,25 @@ void read_from_file(char* file_name, int* num_str, char* arr_pointer[])
     {
         if(string[i] == '\r')
         {
-            string[i] = '\0';
+            string[i] = '\n';
+            string[i + 1] = '\0';
             i++;
             num++;
         }
     }
 
-
-    arr_pointer = (char**) calloc(num, sizeof(char*));
+    arr_pointer = (char**) realloc(arr_pointer, num);
 
     arr_pointer[0] = &string[0];
-    for (size_t i = 0; i < size; i++)
+    for (size_t i = 1, a = 1; i < size && a < num; i++)
     {
         if(string[i] == '\0')
         {
-            arr_pointer[num] = &string[i + 2];
-            num++;
+            arr_pointer[a] = &string[i + 1];
+            a++;
         }
     }
 
     *num_str = num;
-
-    free(string);
     fclose(file_onegin);
 }
