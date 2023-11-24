@@ -84,4 +84,26 @@ void swap(void* a, void* b, int size)
 
 int comp(void* a, void* b)
 {
+    int pos = 0, a_size = 0, b_size = 0, i = 0;
+
+    while(a[pos] != '\0')
+    {
+        s++;
+        pos++;
+    }
+    pos = 0;
+    while(b[pos] != '\0')
+    {
+        b_size++;
+        pos++;
+    }
+
+    for (i = 1; i <= b_size || i <= b_size; i++)
+    {
+        if (a[a_size - i] != b[b_size - i])
+        {
+            return (a[a_size - i] - b[b_size - i]);
+        }
+    }
+    return 0;
 }
